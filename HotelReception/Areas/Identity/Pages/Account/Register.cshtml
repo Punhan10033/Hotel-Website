@@ -1,0 +1,57 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "/Views/Shared/_LogorReg.cshtml";
+}
+
+
+
+
+
+<div id="forregister" class="container">
+			<div id="forreg" class="row  justify-content-center">
+				<div class=" col-md-6 col-lg-4">
+					<div class="forreg2 login-wrap p-0">
+		      	<h3 class="mb-4 text-center">Register</h3>
+                    <div  style="color: #F6CC07;" asp-validation-summary="All"></div>  
+		      <form asp-route-returnurl="@Model.ReturnUrl" method="post" >
+		      		<div class="form-group">
+		      		<input asp-for="Input.FirstName"class="form-control" placeholder="First Name" required>
+                   <span  style="color: #F6CC07;" asp-validation-for="Input.FirstName" ></span>
+		      		</div>
+	            <div class="form-group">
+	              <input  asp-for="Input.LastName" type="text" class="form-control" placeholder="Last Name" required>
+	            </div>
+                    <span  style="color: #F6CC07;"  asp-validation-for="Input.LastName" ></span>
+				 <div class="form-group">
+	              <input  asp-for="Input.Email" type="Email" class="form-control" placeholder="Email" required>
+	            </div>
+                    <span  style="color: #F6CC07;" asp-validation-for="Input.Email" ></span>
+                 <div class="form-group">
+	              <input id="password-field"  asp-for="Input.Password" type="password" class="form-control" placeholder="Password" required>
+	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	            </div>
+                    <span  style="color: #F6CC07;" asp-validation-for="Input.Password" ></span>
+				 <div class="form-group">
+                    <input id="password-field2" placeholder="Confirm Password" asp-for="Input.ConfirmPassword" class="form-control" />
+	              <span  toggle="#password-field2" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	            </div>
+                <span  style="color: #F6CC07;" asp-validation-for="Input.ConfirmPassword" ></span>
+	            <div class="form-group">
+	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
+	            </div>
+	         
+	          </form>
+	          <p class="w-100 text-center">Already have account ? <a href="/Identity/Account/LogIn" class="text-reset">Log In </a> </p>
+	          <p class="w-100 text-center">Return to the <a href="/HotelReception/Index" class="text-reset">Home Page </a> </p>
+		      </div>
+			</div>
+			</div>
+		</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

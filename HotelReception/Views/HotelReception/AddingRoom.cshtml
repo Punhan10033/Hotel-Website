@@ -1,0 +1,154 @@
+﻿@using DTO.RoomDto
+@model RoomToAddDto
+
+@{
+    Layout="/Views/Shared/_Layout1.cshtml";
+}  
+
+ 
+<div class="div2" id="container_2">
+  <form id="survey-form" asp-controller="HotelReception" class="contact-form row" asp-route-id="@Model.RoomId" enctype="multipart/form-data"  asp-action="AddRoom"  method="post">
+    <label id="name-label">Room Number</label>
+      <input type="text" id="name" asp-for="RoomNumber" maxlength="3" class="form forborder" required placeholder="Room number"><br><!--name--->
+      <div class="errmsg">
+      <span  style="background-color:white;margin-left:-1vw;border-radius:8px;text-align:center;margin-top:-8.5vw;position:absolute;width:19vw" class="text-danger numbervalidation" asp-validation-for="RoomNumber" class="errormessage"></span>
+      </div>
+    <label class="toblack" id="email-label">Price</label>
+      <input type="number" id="email" asp-for="Price" maxlength="4" class="form forborder" required placeholder="Room price"><br><!---email-->
+      <label class="toblack"  asp-for="RoomTypeId">Room Type</label>
+    <select class="select1 forborder" id="dropdown"asp-for="RoomTypeId" asp-items="@(@ViewBag.Roomtypes)"></select>
+    <br />
+       <label class="lblfloor toblack"  asp-for="FloorId">Floor</label>
+    <select class="select2 forborder" id="dropdown"asp-for="FloorId" asp-items="@(@ViewBag.Floors)"></select>
+      <textarea class="forborder"
+        id="comments"
+        asp-for="Description"
+        placeholder="Describe the room...."
+      ></textarea>
+     <label class="toblack" id="number-label">Images</label>
+      <input type="file" id="number" asp-for="RoomPictures" class="form forborder"  accept="image/*" multiple="multiple"   required><br><!---number-->
+    
+    <input type="submit" id="submit" name="submit" value="Submit">
+  </form>
+</div>
+
+<style>
+ 
+    .numbervalidation{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, 
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, 
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;}
+    .toblack{
+        color:black;
+    }
+    #name-label{
+        color:black;
+    }
+    .errmsg{
+        color:white;
+        background-color:white;
+        position:absolute;
+    }
+    .errormessage{
+        position:absolute;
+        color:white;
+        background-color:white;
+    }
+   .lblfloor{
+   }
+    .forborder{
+        border-radius:11px;
+        text-align:center;
+    }
+   .select2{
+       color:black;
+       width:5vw;
+   }
+    #comments{
+        color:black;
+    }
+    #email{
+        color:black;
+        width:7vw;
+    }
+    #name{
+        width:20vw;
+        color:black;
+    }
+    .select1{
+        color:black;
+        width:5vw;
+    }
+    .fordiv1{
+        margin-top:400vw;
+        height:7vw;
+        width:20vw;
+    }
+    #title{
+    text-align: center;
+    margin-top:-18px;
+
+    }
+    .div2{
+        box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+        rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset,
+        rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+        rgba(0, 0, 0, 0.09) 0px 16px 8px,
+        rgba(0, 0, 0, 0.09) 0px 32px 16px;
+        margin: 2em 5em 3em 5em;
+  margin-left:50vw;
+  margin-top:11vw;
+  width:30vw;
+  padding: 2em 6em 2em 6em;
+background: linear-gradient(117deg, rgba(255, 255, 255,1) 20%, rgba(50,10,200,0.9757503221014968) 96%, rgba(222,199,45,1) 98%, rgba(100,100,20,1) 98%, rgba(142,49,242,0.5859143339953169) 98%);
+  color: #ffff;
+  font-family: cursive;
+  border-radius: 1.25rem;
+    }
+ .div1{
+     
+  margin: 2em 5em 3em 5em;
+  margin-left:38.6vw;
+  margin-top:5vw;
+  height:5vw;
+  width:20vw;
+background: linear-gradient(117deg, rgba(170,70,70,1) 20%, rgba(50,10,200,0.9757503221014968) 96%, rgba(222,199,45,1) 98%, rgba(100,100,20,1) 98%, rgba(142,49,242,0.5859143339953169) 98%);
+  color: #ffff;
+  padding-bottom:-27vw;
+  font-family: cursive;
+  border-radius: 1.25rem;
+}
+#container_1{
+  text-align:center;
+  margin-top:7vw;
+  padding-bottom:-2vw;
+}
+#container_2{
+    margin-left:37vw;
+ display: block;
+  width:27vw;
+
+}
+.form{
+  width: 100%;
+  margin-bottom: 1em;
+}
+#title{
+    margin-bottom:10vw;
+}
+#submit{
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background: rgb(2,0,36);
+  color: inherit;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.description{
+    height:10vw;
+}
+textarea{
+  width: 100%;
+}
+</style>

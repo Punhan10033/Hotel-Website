@@ -1,0 +1,67 @@
+﻿@using DTO
+@model AdministratorCreateRoleDTO
+@{
+	ViewBag.Title = "Create New Role";
+}
+<h2 class="my-5 text-center">
+	Create New Role
+</h2>
+
+@*<div class="my-5">
+	<form method="post">
+		<div class="for-row">
+			<div class="form-group col-12">
+				<label asp-for="RoleName"></label>
+				<input class="form-control" asp-for="RoleName" />
+				<span asp-validation-for="RoleName" class="small text-danger">
+				</span>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-12">
+				<button class="btn btn-succes" type="submit">Create Role</button>
+			</div>
+		</div>
+	</form>
+</div>*@
+
+
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "/Views/Shared/_LogorReg.cshtml";
+}
+
+
+	<div id="forlogin" class="container">
+			<div class="row mt-5 container-fluid justify-content-center">
+				<div class="col-md-6 col-lg-4  ">
+					<div class="login-wrap p-0 ">
+                    <div style="color: #F6CC07;" asp-validation-summary="All"></div>  
+		      	<form asp-controller="Admin" asp-action="CreateRole"  method="post" class="signin-form">
+		      		<div class="form-group container">
+                    <label asp-for="RoleName" class="sr-only">Email</label>
+		      		<input type="text" style="text-align:center"  asp-for="RoleName" class="form-control" placeholder="Role Name" required>
+                    <span style="color: #F6CC07;" asp-validation-for="RoleName" ></span>
+		      		</div>
+					  <div class="form-group ">
+	            	<button type="submit" class="form-control btn btn-primary submit px-3">Add Role </button>
+	            	<a asp-action="Roles" id="cancel1" class="form-control btn btn-primary submit px-4">Cancel</a>
+	            </div>
+	          </form>
+
+		      </div>
+			</div>
+			</div>
+		</div>
+
+
+	<style>
+			#cancel1{
+				width:11vw;
+				margin-left:25%;
+				text-align:center;
+				margin-top:5px;
+				height:3vw;
+			}
+		</style>

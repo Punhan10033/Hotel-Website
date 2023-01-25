@@ -1,0 +1,46 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "/Views/Shared/_LogorReg.cshtml";
+}
+
+
+	<div id="forlogin" class="container">
+			<div class="row mt-5 justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+		      	<h3 class="mb-4 text-center">Log In</h3>
+                    <div style="color: #F6CC07;" asp-validation-summary="All"></div>  
+		      	<form  id="acoount" method="post" class="signin-form">
+		      		<div class="form-group">
+                    <label asp-for="Input.Email" class="sr-only">Email</label>
+		      		<input type="email"  asp-for="Input.Email" class="form-control" placeholder="Email" required>
+                    <span style="color: #F6CC07;" asp-validation-for="Input.Email" ></span>
+		      		</div>
+	            <div class="form-group">
+                    <label asp-for="Input.Password" class="sr-only">Password</label>
+	              <input id="password-field"  asp-for="Input.Password" type="password" class="form-control" placeholder="Password" required>
+	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    <span style="color: #F6CC07;" asp-validation-for="Input.Password" ></span>
+	            </div>
+	            <div class="form-group">
+	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+	            </div>
+	          </form>
+	          <p class="w-100 text-center">Don't have account ? <a href="/Identity/Account/Register" class="text-reset">Register here</a> </p>
+	          <p class="w-100 text-center">Return to the <a href="/HotelReception/Index" class="text-reset">Home Page </a> </p>
+		      </div>
+			</div>
+			</div>
+		</div>
+
+
+  @section Scripts {
+ <partial name="_ValidationScriptsPartial" />
+}
+
+
+
+

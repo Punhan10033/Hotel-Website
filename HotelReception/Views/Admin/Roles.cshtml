@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<IdentityRole>
+@{
+	ViewBag.Title = "Roles";
+	Layout = "~/Views/Shared/_Layout1.cshtml";
+
+
+}
+<div style="background-color:dimgray; max-width:70.5vw; " class="container-fluid withtable">
+	<div class="headerfortable container-fluid row">
+		<form asp-controller="Admin" id="idRole" asp-action="Roles">
+			<p class="filter">
+				<input class="filterinput" style="width:7.4vw;text-align:center;height:2vw; background-size:4px;" min-lentgh="7"  type="text" placeholder="Role Name" name="SearchString" />
+				<button class="filterinput1 fa fa-search" type="submit" style="background-color:forestgreen; color:white;font:itallic;width:7vw;">Search </button>
+			</p>
+		</form>
+	</div>
+	<div class="div132 container row">
+		<a style="margin-top:4%;position:absolute;margin-left:62vw; border-radius:14px;" class="addbrncus  btn btn-success btn-lg glyphicon glyphicon-plus " href="/Admin/CreateRole">  </a>
+	</div>
+	<table class="table2" style="background-color:dimgray">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Role Name</th>
+				@*<th>Last Name</th>*@
+				@*<th id="fincode">PinCode</th>*@
+				@*<th>Joined</th>*@
+				<th class="edit">Edit</th>
+				<th class="delete">Delete</th>
+		</thead>
+		<tbody>
+			@foreach (IdentityRole role in Model)
+			{
+				<tr >
+					<td>@Html.DisplayFor(modelItem => role.Id)</td>
+					<td style="text-transform:capitalize">@Html.DisplayFor(modelItem => role.NormalizedName)</td>
+					@*<td style="text-transform:uppercase">@Html.DisplayFor(modelItem => cus.PinCode)</td>
+						<td>@Html.DisplayFor(modelItem => cus.CreatedAt)</td>*@
+					<td class="foredit">@Html.ActionLink("","Update","Admin",new  {Id=@role.Id},new{ @class="glyphicon glyphicon-edit  "}) </td>
+					<td class="foredit">@Html.ActionLink("","DeleteRole","Admin",new {Id=@role.Id},new{ @class="glyphicon glyphicon-trash",onclick = "return confirm('Do you wanna delete this Role ?');" })</td>
+
+				</tr>
+			}
+		</tbody>
+	</table>
+	<div class="pagination">
+	@Html.PagedListPager((IPagedList)Model,Page=>Url.Action("Roles",new{Page=Page,searchString=ViewBag.CurrentFilter}),
+	new X.PagedList.Web.Common.PagedListRenderOptions{ContainerDivClasses=new[]{"navigation"},LiElementClasses =new[]{"page-item"},PageClasses=new[]{"page-link"}}
+	)
+	</div>
+</div>
+<div id="confirmDialog" title="Delete Role" hidden>
+    <p>Do you want to Delete this Role ? </p>
+</div>
+<style>
+	.div132{
+		margin-bottom:10%;
+	}
+	td{
+		color:black;
+		font:20
+	}
+	.addbrncus{
+		font-size:13px;
+		position:absolute;
+	}
+	
+	
+</style>

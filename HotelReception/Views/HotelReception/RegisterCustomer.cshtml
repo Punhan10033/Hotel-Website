@@ -1,0 +1,98 @@
+﻿@using DTO.CustomerDTO
+@model CustomerToAddOrUpdateDto
+@{
+	Layout = "/Views/Shared/_Layout1.cshtml";
+}
+	<span class="errormessage" style="color:red" asp-validation-for="PinCode"></span>
+<div class="content customerform">
+	<div class="container">
+		<div class="row">
+			<div class="forimg1 col-md-6">
+				<img src="~/assets/images/pexels-andrea-piacquadio-3768095.jpg" alt="Image" class="img1222 img-fluid">
+			</div>
+			<div class="col-md-6 contents">
+				<div class="row justify-content-center">
+					<div class="col-md-8">
+						<div class="mb-4">
+							<h2>Add Customer</h2>
+						</div>
+						<form class="form-detail" asp-controller="HotelReception" asp-action="AddOrUpdateCustomer" asp-route-id="@Model.CustomerId" method="post" id="myform">
+							<div class="form-group first">
+								<label class="label12" asp-for="FirstName">Firs Name</label>
+								<input id="field_ucfirst" style="text-transform:capitalize" required="required" type="text" asp-for="FirstName" class="input1 form-control ucfirst" id="username">
+							</div>
+							<div class="form-group last mb-4">
+								<label class="label12" asp-for="LastName">Last Name</label>
+								<input style="text-transform:capitalize" id="field_ucfirst" required="required" type="text" asp-for="LastName" class="input1 form-control" id="password">
+							</div>
+							<div class="form-group last mb-4">
+								<label class="label12" asp-for="PinCode">Pin Code</label>
+								<input style="text-transform:uppercase" required="required" type="text" maxlength="7" minlength="7" asp-for="PinCode" class="input1 form-control" id="password">
+							</div>
+							<input style="color:white;background-color:dimgray ;border-radius:15px; width:15vw;margin-left:36px;" type="submit" name="CustomerId" value="@ViewBag.Btn" class=" btn ">
+						</form>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<style>
+	h2{
+   		font:caption;
+		font-size:24px;
+	}
+	.label12{
+		font:caption;
+
+	}
+	 .ucfirst:first-letter {
+   text-transform: capitalize;
+   }
+	.errormessage{
+		margin-top:11.5%;
+		position:absolute;
+		margin-left:48.5vw;
+		background-color:white;
+		width:26vw;
+		text-align:center;
+		border-radius:10px;
+	}
+	.btn123{
+		width:15vw;
+	}
+	.customerform{
+		margin-top:13vw;
+		background-color:bisque;
+		width:60vw;
+		margin-left:15vw;
+		border-radius:14px;
+		 position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+
+	}
+	.img1222{
+		width:40vw;
+		border-radius:14px
+	}
+	.forimg1{
+		width:35vw;
+		border-radius:14px;
+
+		margin-left:-15px;
+	}
+	.input1{
+		width:20vw;
+		border-radius:20px;
+		
+	}
+	.input1:hover{
+		background-color:wheat
+	}
+</style>
+

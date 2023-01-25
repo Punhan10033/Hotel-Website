@@ -1,0 +1,67 @@
+﻿@using HotelReception.Areas.Identity.Data
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model PagedList<ReceptionUser>
+@{
+	Layout = "/Views/Shared/_Layout1.cshtml";
+}
+
+
+
+
+
+
+
+
+
+<div style="background-color:dimgray; max-width:70.5vw; " class="container-fluid withtable">
+	<div class="headerfortable container">
+		<form asp-controller="Admin" id="idRole" asp-action="GetUsers">
+			<p class="filter">
+				<input class="filterinput" style="width:7.4vw;text-align:center;height:2vw; background-size:4px;" min-lentgh="7"  type="text" placeholder="First Name" name="SearchString" />
+				<button class="filterinput1 fa fa-search" type="submit" style="background-color:forestgreen; color:white;font:itallic;width:7vw;">Search </button>
+			</p>
+		</form>
+	</div>
+	
+	<table class="table2" style="background-color:dimgray">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th id="fincode">Email</th>
+				<th class="edit">Edit</th>
+		</thead>
+		<tbody>
+			@foreach (ReceptionUser user in Model)
+			{
+				<tr >
+					<td>@Html.DisplayFor(modelItem => user.Id)</td>
+					<td style="text-transform:capitalize">@Html.DisplayFor(modelItem => user.FirstName)</td>
+					<td style="text-transform:capitalize">@Html.DisplayFor(modelItem => user.LastName)</td>
+					<td style="text-transform:capitalize">@Html.DisplayFor(modelItem => user.Email)</td>
+					<td class="foredit">@Html.ActionLink("","EditUser","Admin",new  {Id=@user.Id},new{ @class="glyphicon glyphicon-edit  "}) </td>
+
+				</tr>
+			}
+		</tbody>
+	</table>
+	<div class="pagination">
+	@Html.PagedListPager((IPagedList)Model,Page=>Url.Action("Roles",new{Page=Page,searchString=ViewBag.CurrentFilter}),
+	new X.PagedList.Web.Common.PagedListRenderOptions{ContainerDivClasses=new[]{"navigation"},LiElementClasses =new[]{"page-item"},PageClasses=new[]{"page-link"}}
+	)
+	</div>
+</div>
+<div id="confirmDialog" title="Delete Role" hidden>
+    <p>Do you want to Delete this Role ? </p>
+</div>
+<style>
+	
+	td{
+		color:black;
+		font:20
+	}
+	
+	
+</style>

@@ -1,0 +1,66 @@
+﻿@*@model EditRoleModel
+
+
+<form method="post" class="mt-3">
+	<div class="form-group row">
+		<label asp-for="Id" class="col-sm-2 col-form-label"></label>
+		<div class="col-sm-10">
+			<input asp-for="Id" disabled class="form-control"/>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label asp-for="RoleName" class="col-sm-2 col-form-label"></label>
+		<div class="col-sm-10">
+			<input  asp-for="RoleName" class="form-control"/>
+			<span asp-validation-for="RoleName" class="text-danger"></span>
+		</div>
+	</div>
+	<div asp-validation-summary="All" class="text-danger"></div>
+	<div class="form-group row">
+		<div class="col-sm-10">
+			<button type="submit" class="btn btn-primary">Update</button>
+			<a asp-action="Roles" class="btn btn-primary">Cancel</a>
+		</div>
+	</div>
+</form>*@
+@model EditRoleModel
+@{
+    ViewData["Title"] = "Update Role";
+    Layout = "/Views/Shared/_LogorReg.cshtml";
+}
+
+
+	<div id="forlogin" class="container">
+			<div class="row mt-5 justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+                    <div style="color: #F6CC07;" asp-validation-summary="All"></div>  
+		      	<form asp-controller="Admin" asp-action="Update" asp-route-id="@Model.Id" method="post" class="signin-form">
+					  <div class="form-group">
+                    <label asp-for="Id" class="sr-only">Id</label>
+		      		<input type="text" style="text-align:center; background-color:ActiveBorder"  asp-for="Id" class="form-control" disabled placeholder="Role Id" required>
+		      		</div>
+		      		<div class="form-group">
+                    <label asp-for="RoleName" class="sr-only">Role Name</label>
+		      		<input type="text" style="text-align:center"  asp-for="RoleName" class="form-control" placeholder="Role Name" required>
+                    <span style="color: #F6CC07;" asp-validation-for="RoleName" ></span>
+		      		</div>
+					  <div class="form-group">
+	            	<button type="submit" class="form-control btn btn-primary submit px-3">Update Role </button>
+	            	<a asp-action="Roles" id="cancel1" class="form-control btn btn-primary submit px-4">Cancel</a>
+
+	            </div>
+	          </form>
+		      </div>
+			</div>
+			</div>
+		</div>
+		<style>
+			#cancel1{
+				width:11vw;
+				margin-left:25%;
+				text-align:center;
+				margin-top:5px;
+				height:3vw;
+			}
+		</style>

@@ -1,0 +1,297 @@
+﻿@using DTO
+@model ReservationToAddDto
+@{
+	Layout = "/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="container forcards1">
+	<div id="myCarousel" class="carousel slide carousell1" data-ride="carousel" data-interval="2000" data-pause="hover">
+		<ol class="carousel-indicators">
+			@for (int i = 0; i < @Model.Room1.RoomPictures.Count; i++)
+			{
+				if (i == 0)
+				{
+					<li data-target="#myCarousel" data-slide-to="@i" class="active"></li>
+				}
+				else
+				{
+					<li data-target="#myCarousel" data-slide-to="@i"></li>
+				}
+			}
+		</ol>
+		<div class="carousel-inner" role="listbox">
+			@for (int i = 0; i < Model.Room1.RoomPictures.Count; i++)
+			{
+				var file = Model.Room1.RoomPictures[i];
+				if (i == 0)
+				{
+					<div class="item active">
+						<div class="carousel-content">
+							<div style="margin: 0 auto">
+								<p>
+									<img class="imgss" style="width: 100%;height:20vw" src="~/assets2/forupload/@Model.Room1.RoomPictures[i].Image" />
+								</p>
+							</div>
+						</div>
+					</div>
+				}
+				else
+				{
+					<div class="item">
+						<div class="carousel-content">
+							<div style="margin: 0 auto;text-align:center;">
+								<p>
+									<img class="imgss" src="~/assets2/forupload/@Model.Room1.RoomPictures[i].Image"
+								 style="width: 100%;height:20vw" />
+								</p>
+							</div>
+						</div>
+					</div>
+				}
+			}
+		</div>
+		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only"> Previous</span>
+		</a>
+		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+	<form id="survey-form" asp-controller="HotelReception" class="contact-form row" asp-route-id="@Model.Room1.RoomId" asp-action="AddReservation" method="post">
+		<div style="color: red;border-radius:8px;background-color:white;width:17vw;position:absolute;margin-top:6.7vw;margin-left:20vw" asp-validation-summary="All"></div>
+		<div class="details">
+			<div class="divelements row">
+				<div class="col">
+					<p class="p1 detalisfrlabel"><label asp-for="Room1.RoomId" style="font-size:18.8px;background-color:bisque" class="label label-secondary input1">Room#</label> @Model.Room1.RoomNumber</p>
+					<p class="p1 rmtype"><label style="font-size:18.8px;background-color:bisque" asp-for="Room1.RoomType" class="label label-secondary input1">RoomType:</label> @Model.Room1.RoomType.RoomTypeName</p>
+					<p class="p1 detalisfrlabel"><label style="font-size:18.8px;background-color:bisque" class="label label-secondary input1 ">Price:</label> @Model.Room1.Price AZN</p>
+				</div>
+				<div class="reserve row">
+					<label asp-for="DepartureDate" style="font-size:18.8px;background-color:bisque" class="label label-secondary dpdate">Departure Date</label>
+					<div class="col-md-10">
+						@*@Html.EditorFor(model => model.DepartureDate,new { htmlAttributes = new {@class = "departuredate form-control" } })*@
+						<input class="form-control" type="date" date-time asp-for="DepartureDate" auto-close="true" view="date"
+							   datepicker-options="dateOptions" min-view="date" maxlength="10" format="dd/MM/yyyy"
+							   ng-model="$ctrl.DateInput" required="true">
+					</div>
+				</div>
+				<div>
+					<div class="forbtn" style="margin-top:5.5vw">
+						<input class="filterinput input1" required="required" style="width:4.4vw;border-width:thin; background-size:2px;width:8vw;text-align:center;height:30px;" min-lentgh="7" maxlength="7" type="text" placeholder="PinCode" name="PinCode" />
+						<button id="rservebtn" class="filterinput1 input1 btn321" style="background-color:forestgreen; background-size:15px;color:white; margin-top:-3.4vw;margin-left:8px;" type="submit">Reserve </button>
+					</div>
+				</div>
+				<label class="label label-secondary descriptionlbl input1 " style="font-size:18.9px;background-color:bisque" asp-for=Room1.Description>Description </label>
+				<textarea class="forborder description1"
+						  id="comments"
+						  asp-for="Room1.Description"
+						  readonly></textarea>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+	var today = new Date().toISOString().split('T')[0];
+	document.getElementsByName("DepartureDate")[0].setAttribute('min', today);
+</script>
+<style>
+	.forbtn {
+		margin-left: 23vw;
+		position: absolute;
+		margin-top: -7vw
+	}
+
+	#rservebtn:hover {
+		background-color: ActiveBorder
+	}
+
+	.btn321:hover {
+		background-color: ActiveBorder
+	}
+
+	.filterinput1:hover {
+		background-color: blue;
+	}
+
+	.descriptionlbl {
+		margin-top: -4px;
+		position: absolute;
+		left: 32.3vw;
+	}
+
+	.p1 {
+		font: italic;
+		background-color: white;
+	}
+
+	.label {
+		font: italic;
+		background-color: whitesmoke;
+		margin-left: -1%;
+		color: white;
+		text-align: center;
+	}
+
+	.input1 {
+		border-width: thin;
+	}
+
+	.forbtn {
+		margin-top: 10vw;
+	}
+
+	.dpdate {
+		margin-left: 1vw;
+		margin-top: -3vw
+	}
+
+	.departuredate {
+		width: 10vw;
+	}
+
+	.filterinput {
+		position: absolute;
+		margin-top: -6vw;
+	}
+
+	.reserve {
+		margin-top: -7.2vw;
+		position: absolute;
+		margin-left: 20vw;
+		width: 15%;
+		background-color: burlywood;
+	}
+
+	.filterinput1 {
+		width: 7vw;
+		margin-top: -1vw;
+	}
+
+	.rmtype {
+		width: 17vw;
+		border: 0.5px solid;
+		border-radius: 10px;
+		border-color: black;
+		color: black;
+	}
+
+	.description1 {
+		text-align: center;
+		width: 15vw;
+		margin-top: 1.5vw;
+	}
+
+	#rservebtn:hover {
+		background-color: dimgray;
+	}
+
+	.divelements {
+		margin-left: 15px;
+	}
+
+	.detalisfrlabel {
+		border: 0.5px solid;
+		width: 12vw;
+		border-radius: 10px;
+		border-color: black;
+		color: black;
+		margin-top: 5px;
+	}
+
+	.label {
+		font-size: 20px;
+		color: black;
+	}
+
+	.details {
+		background-color: burlywood;
+		padding-bottom: 5vw;
+		margin-top: 25px;
+		margin-left: 15px;
+	}
+
+	.toblack {
+		color: black;
+	}
+
+	#name-label {
+		color: black;
+	}
+
+
+	#email {
+		color: black;
+		width: 7vw;
+	}
+
+	#name {
+		width: 20vw;
+		color: black;
+	}
+
+	.select1 {
+		color: black;
+		width: 5vw;
+	}
+
+	.fordiv1 {
+		margin-top: 400vw;
+		height: 7vw;
+		width: 20vw;
+	}
+
+	#title {
+		text-align: center;
+		margin-top: -18px;
+	}
+
+	}
+
+	.form {
+		width: 100%;
+		margin-bottom: 1em;
+	}
+
+	#title {
+		margin-bottom: 10vw;
+	}
+
+	#submit {
+		display: block;
+		width: 100%;
+		padding: 0.75rem;
+		background: rgb(2,0,36);
+		color: inherit;
+		border-radius: 15px;
+		cursor: pointer;
+	}
+
+	.description {
+		height: 10vw;
+	}
+
+	textarea {
+		width: 100%;
+	}
+
+	.carousell1 {
+		margin-top: 7vw;
+		width: 40vw;
+		margin-left: 30vw;
+	}
+
+	.imgss {
+		height: 40vw;
+	}
+
+	#myCarousel {
+		margin-left: -1vw;
+	}
+
+	.forcards1 {
+		background-color: burlywood;
+		max-width: 40vw;
+	}
+</style>

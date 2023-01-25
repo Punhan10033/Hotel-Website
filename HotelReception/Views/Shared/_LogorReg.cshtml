@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hotel</title>
+    <link rel="shortcut icon" href="~/assets/images/mbr-96x64.png"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="~/assets/ForLoginOrReg/css/style.css">
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url(/assets/images/hdhotel.jpg);">
+	<section class="ftco-section">
+		@RenderBody();
+
+	</section>
+	<script src="~/assets/ForLoginOrReg/js/jquery.min.js"></script>
+  <script src="~/assets/ForLoginOrReg/js/popper.js"></script>
+  <script src="~/assets/ForLoginOrReg/js/bootstrap.min.js"></script>
+  <script src="~/assets/ForLoginOrReg/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+	</body>
+</html>
+
+<style>
+	.ftco-section{
+		max-height:100%;
+	}
+</style>

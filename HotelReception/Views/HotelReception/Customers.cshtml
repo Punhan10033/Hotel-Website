@@ -1,0 +1,94 @@
+﻿@using Entities
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Common
+@model IPagedList<Customer>
+
+@{
+	Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div style="background-color:burlywood; max-width:70.5vw; " class="container-fluid withtable">
+	<div class="headerfortable">
+		<form asp-controller="HotelReception" asp-action="Customers">
+			<p class="filter">
+				<input class="filterinput" style="width:7.4vw;text-align:center;height:2vw; background-size:4px;" min-lentgh="7" maxlength="7" type="text" placeholder="PinCode" name="SearchString" />
+				<button class="filterinput1 fa fa-search" type="submit" style="background-color:forestgreen; color:white;font:itallic;width:7vw;">Search </button>
+			</p>
+		</form>
+	</div>
+	<div class="div132 ">
+		<a style="margin-top:5%;position:absolute;margin-left:60vw; border-radius:14px;" class="addbrncus bi bi-person-plus-fill " href="/HotelReception/RegisterCustomer"> </a>
+	</div>
+	<table class="table2 " style="background-color:burlywood">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th id="fincode">PinCode</th>
+				<th>Joined</th>
+				<th class="edit">Edit</th>
+				<th class="delete">Delete</th>
+		</thead>
+		<tbody>
+			@foreach (var cus in Model)
+			{
+				<tr>
+					<td>@Html.DisplayFor(modelItem => cus.CustomerId)</td>
+					<td style="text-transform:capitalize">@Html.DisplayFor(modelItem => cus.FirstName)</td>
+					<td style="text-transform:capitalize">@Html.DisplayFor(modelItem => cus.LastName)</td>
+					<td style="text-transform:uppercase">@Html.DisplayFor(modelItem => cus.PinCode)</td>
+					<td>@Html.DisplayFor(modelItem => cus.CreatedAt)</td>
+					<td class="foredit">@Html.ActionLink("","RegisterCustomer","HotelReception",new  {Id=@cus.CustomerId},new{ @class="glyphicon glyphicon-edit  "}) </td>
+					<td class="foredit">@Html.ActionLink("","Delete","HotelReception",new {CustomerId=@cus.CustomerId},new{ @class="glyphicon glyphicon-trash",onclick = "return confirm('Do you wanna delete this Customer ?');" })</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+</div>
+	<div class="pagination">
+	@Html.PagedListPager((IPagedList)Model,Page=>Url.Action("Customers",new{Page=Page,searchString=ViewBag.CurrentFilter}),
+	new X.PagedList.Web.Common.PagedListRenderOptions{ContainerDivClasses=new[]{"navigation"},LiElementClasses =new[]{"page-item"},PageClasses=new[]{"page-link"}}
+	)
+	</div>
+
+
+<style>
+	.pagination{
+		margin-left:18%;
+		width:77%;
+		position:absolute;
+		margin-top:-3.6%
+	}
+	.div12 {
+		position: absolute;
+		background-color: black;
+		margin-left: 10vw;
+		margin-top: 10vw;
+	}
+
+	thead, th {
+		color: black;
+	}
+
+	td {
+		color: black;
+	}
+
+	.filterinput {
+	}
+
+	.bi-person-plus-fill:hover {
+		color: white;
+	}
+
+	.bi-person-plus-fill {
+		color: forestgreen;
+	}
+
+	.glyphicon-edit {
+		color: forestgreen;
+	}
+</style>
